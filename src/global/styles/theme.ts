@@ -19,6 +19,7 @@ export const theme = {
     on: '#32BD50',
 
     discord: '#7289da',
+    google: '#4285F4'
   },
 
   fonts: {

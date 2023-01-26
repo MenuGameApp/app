@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Fontisto } from '@expo/vector-icons';
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useFocusEffect } from '@react-navigation/native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import * as Linking from 'expo-linking';
 
@@ -30,6 +30,7 @@ import { Button } from '../../components/Button';
 import { Member, MemberProps } from '../../components/Member';
 import { Header } from '../../components/Header';
 import { Load } from '../../components/Load';
+import { CategorySelect } from '../../components/CategorySelect';
 
 type Params = {
   guildSelected: AppointmentProps
@@ -42,18 +43,22 @@ type GuildWidget = {
   members: MemberProps[];
 }
 
-export function AppointmentDetails() {
+export function Games() {
   const [widget, setWidget] = useState<GuildWidget>({} as GuildWidget);
   const [loading, setLoading] = useState(true);
+  const [category, setCategory] = useState('');
 
   const route = useRoute();
   const { guildSelected } = route.params as Params;
 
+  function handleCategorySelect(categoryId: string) {
+    categoryId === category ? setCategory('') : setCategory(categoryId);
+  }
   async function fetchGuildWidget() {
     try {
       // const response = await api.get(`/guilds/${guildSelected.guild.id}/widget.json`);
 
-      const response = { 
+      const response = {
         data: {
           id: 'gw001',
           name: 'Guild Widget 001',
@@ -103,41 +108,34 @@ export function AppointmentDetails() {
   }, []);
 
 
+
+
   return (
     <Background>
       <Header
-        title="Detalhes"
+        title="Games"
         action={
           guildSelected.guild.owner &&
           <BorderlessButton onPress={handleShareInvitation}>
-            <Fontisto 
+            <Fontisto
               name="share"
               size={24}
               color={theme.colors.primary}
             />
 
             <Image
-                source={{ uri: Fontisto }}
-                style={{ width: 24, height: 24 }}
-              />
+              source={{ uri: Fontisto }}
+              style={{ width: 24, height: 24 }}
+            />
           </BorderlessButton>
         }
       />
-
-      <ImageBackground
-        source={BannerImg}
-        style={styles.banner}
-      >
-        <View style={styles.bannerContent}>
-          <Text style={styles.title}>
-            {guildSelected.guild.name}
-          </Text>
-
-          <Text style={styles.subtitle}>
-            {guildSelected.description}
-          </Text>
-        </View>
-      </ImageBackground>
+      <View style={{marginTop: 12}}>
+        <CategorySelect
+          categorySelected={category}
+          setCategory={handleCategorySelect}
+        />
+      </View>
 
       {
         loading ? <Load /> :

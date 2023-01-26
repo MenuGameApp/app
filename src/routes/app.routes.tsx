@@ -6,6 +6,8 @@ import { theme } from '../global/styles/theme';
 import { Home } from '../screens/Home';
 import { AppointmentDetails } from '../screens/AppointmentDetails';
 import { AppointmentCreate } from '../screens/AppointmentCreate';
+import { Games } from '../screens/Games';
+import { Table } from '../screens/Table';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -30,7 +32,15 @@ export function AppRoutes() {
       <Screen 
         name="AppointmentCreate"
         component={AppointmentCreate}
-      />      
+      />    
+       <Screen 
+        name="Games"
+        component={Games}
+      />  
+      <Screen 
+        name="Table"
+        component={Table}
+      />     
     </Navigator>
   )
 }

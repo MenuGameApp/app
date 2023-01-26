@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: 56,
-    backgroundColor: theme.colors.primary,
+    backgroundColor: theme.colors.google,
     borderRadius: 8,
     flexDirection: 'row',
     alignItems: 'center'
@@ -23,10 +23,10 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRightWidth: 1,
-    borderColor: theme.colors.line
+    borderColor: '#ffffff50'
   },
   icon: {
     width: 24,
-    height: 18
+    height: 24
   }
 });

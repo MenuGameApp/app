@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, Image, View } from 'react-native';
 import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
 
-import DiscordImg from '../../assets/discord.png';
+import GoogleImg from '../../assets/google.png';
 import { styles } from './styles';
 
 type Props = RectButtonProps & {
@@ -16,7 +16,7 @@ export function ButtonIcon({ title, ...rest } : Props){
       {...rest }
     >
       <View style={styles.iconWrapper}>
-        <Image source={DiscordImg} style={styles.icon} />
+        <Image source={GoogleImg} style={styles.icon} />
       </View>
 
       <Text style={styles.title}>

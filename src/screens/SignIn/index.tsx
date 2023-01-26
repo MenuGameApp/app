@@ -1,4 +1,6 @@
 import React from 'react';
+import * as WebBrowser from 'expo-web-browser';
+
 import { 
   View, 
   Text, 
@@ -6,6 +8,9 @@ import {
   Alert,
   ActivityIndicator
 } from 'react-native';
+import * as Google from 'expo-auth-session/providers/google';
+import { getAuth, GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
+
 
 import { useAuth } from '../../hooks/auth';
 
@@ -16,13 +21,16 @@ import { styles } from './styles';
 import { ButtonIcon } from '../../components/ButtonIcon';
 import { Background } from '../../components/Background';
 
+WebBrowser.maybeCompleteAuthSession();
+
+
 export function SignIn(){
   const { loading, signIn } = useAuth();
 
   async function handleSignIn() {
     try {
       await signIn();
-    }catch (error) {
+    }catch (error: any) {
       Alert.alert(error);
     }
   }
@@ -44,14 +52,14 @@ export function SignIn(){
           </Text>
 
           <Text style={styles.subtitle}>
-            Crie grupos para jogar seus games {'\n'} 
-            favoritos com seus amigos
+            Interaja com seu grupo de amigos {'\n'} 
+            conectados em uma mesa de bar
           </Text>
 
           {
             loading ? <ActivityIndicator color={theme.colors.primary} /> :
             <ButtonIcon 
-              title="Entrar com Discord"
+              title="Entrar com Google"
               onPress={handleSignIn}
             />  
           }                             

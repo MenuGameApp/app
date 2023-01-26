@@ -12,23 +12,23 @@ export function Profile() {
 
   function handleSignOut() {
     Alert.alert('Logout', 'Deseja sair do GamePlay?',
-    [
-      {
-        text: 'Não',
-        style: 'cancel'
-      },
-      {
-        text: 'Sim',
-        onPress: () => singOut()
-      }
-    ])
+      [
+        {
+          text: 'Não',
+          style: 'cancel'
+        },
+        {
+          text: 'Sim',
+          onPress: () => singOut()
+        }
+      ])
   }
 
   return (
     <View style={styles.container}>
-    
+
       <RectButton onPress={handleSignOut}>
-        <Avatar urlImage={user.avatar} />
+        <Avatar urlImage={user.data.picture} />
       </RectButton>
 
       <View>
@@ -36,9 +36,9 @@ export function Profile() {
           <Text style={styles.greeting}>
             Olá,
           </Text>
-          
+
           <Text style={styles.username}>
-            { user.firstName }
+            {user.data.given_name}
           </Text>
         </View>
 

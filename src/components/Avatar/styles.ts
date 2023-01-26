@@ -7,11 +7,20 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 22
+    marginRight: 12
+  },
+  circle: {
+    borderRadius: 50,
+    overflow: 'hidden',
+    border: '2px solid #fff'
   },
   avatar: {
     width: 46,
     height: 46,
     borderRadius: 8
+  },
+  large: {
+    width: 64,
+    height: 64
   }
 });
