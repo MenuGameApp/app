@@ -5,6 +5,11 @@ import { styles } from './styles';
 import DiscordSvg from '../../assets/discord.svg';
 import PlayerSvg from '../../assets/player.svg';
 
+import Textura from '../../assets/textura_madeira_1.png'
+import Textura2 from '../../assets/textura_madeira_2.png'
+import { Feather } from '@expo/vector-icons';
+
+
 // const { CDN_IMAGE } = process.env;
 
 type Props = {
@@ -21,20 +26,22 @@ export function GuildIcon({ guildId, iconId }: Props) {
 
   return (
     <View style={styles.container}>
-      {  
-        iconId ?    
+      {
+        iconId ?
+          <Image
+            source={{ uri }}
+            style={styles.image}
+            resizeMode="cover"
+          />
+          :
+          <>
         <Image 
-          source={{ uri }}
+          source={{ uri: Textura }}
           style={styles.image}
           resizeMode="cover"    
         />
-        :
-        <Image 
-          source={{ uri: DiscordSvg }}
-          style={styles.image}
-          resizeMode="cover"    
-        />
-       
+        </>
+
       }
     </View>
   )

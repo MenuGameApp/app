@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import { theme } from '../../global/styles/theme';
+import texturaMadeira from '../../assets/textura_madeira_2.png'
 
 export const styles = StyleSheet.create({
   container: {
@@ -13,8 +14,9 @@ export const styles = StyleSheet.create({
   bannerContent: {
     flex: 1,
     justifyContent: 'flex-end',
-    paddingHorizontal: 24,
-    marginBottom: 30
+    padding: 24,
+    backgroundColor: '#222644',
+    height: 100
   },
   title: {
     fontSize: 28,
@@ -33,18 +35,54 @@ export const styles = StyleSheet.create({
   },
   footer: {
     paddingHorizontal: 24,
-    paddingVertical: 20,
-    marginBottom: getBottomSpace(),
+    paddingVertical: 20, 
+    width: '50%'
+
   },
 
   table: {
-    height: 200,
-    width: 370,
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
     borderRadius: 110,
-    margin: 20,
-    border: '10px solid #2F345D',
+    border: '10px solid #ba9d7f',
     boxShadow: '4px 4px 4px #00000050',
-    backgroundColor: '#464F87'
+    // backgroundColor: '#464F87',
+    overflow: 'hidden'
 
+  },
+  horizontal: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr 1fr 1fr',
+    height: '100%',
+    alignContent: 'space-between',
+    justifyItems: 'center'
+  },
+  vertical: {
+    position: 'absolute',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: '100%',
+    alignItems: 'center',
+    width: '100%'
+  },
+  user: {
+    width: 58,
+    height: 58,
+    backgroundColor: '#fff',
+    borderRadius: 18,
+    overflow: 'hidden',
+    border: '4px solid white',
+    boxShadow: '4px 4px 4px #00000050',
+
+  },
+  room: {
+    width: 370,
+    height: 200,
+    marginTop: 60,
+    marginBottom: 50,
+    marginLeft: 'auto',
+    marginRight: 'auto'
   }
 });

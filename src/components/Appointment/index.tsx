@@ -7,6 +7,7 @@ import { theme } from '../../global/styles/theme';
 import { styles } from './styles';
 import PlayerSvg from '../../assets/player.svg';
 import CalendarSvg from '../../assets/calendar.svg';
+import { Feather } from '@expo/vector-icons';
 
 import { GuildProps } from '../Guild';
 import { GuildIcon } from '../GuildIcon';
@@ -49,10 +50,30 @@ export function Appointment({ data, ...rest }: Props) {
               {data.guild.name}
             </Text>
 
-            <Text style={styles.category}>
-              {category.title}
-            </Text>
+
+
+            <View style={styles.column}>
+              <Feather
+                name="clock"
+                style={styles.category}
+                size={24}
+              />
+              <Text style={styles.category}>
+                12
+              </Text>
+            </View>
+            <View style={styles.column}>
+              <Feather
+                name="user"
+                size={24}category
+                style={styles.category}
+              />
+              <Text style={styles.category}>
+                6
+              </Text>
+            </View>
           </View>
+
 
           {/* <View style={styles.footer}>
             <View style={styles.dateInfo}>
@@ -79,8 +100,8 @@ export function Appointment({ data, ...rest }: Props) {
             </View>
           </View> */}
         </View>
-      </LinearGradient>
-    </RectButton>
+      </LinearGradient >
+    </RectButton >
   )
 
 }

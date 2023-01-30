@@ -3,32 +3,33 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
-import { Text, View } from 'react-native';
+import { Text, View, ImageBackground } from 'react-native';
 
 import { theme } from '../../global/styles/theme';
 import { styles } from './style';
+import BannerAthenas from '../../assets/bannerAthenas.png'
 
 type Props = {
   title: string;
   action?: ReactNode;
 }
 
-export function Header({ title, action}: Props ){
+export function Header({ title, action }: Props) {
   const { secondary100, secondary80, heading } = theme.colors;
 
   const navigation = useNavigation();
 
-  function handleGoBack(){
+  function handleGoBack() {
     navigation.goBack();
   }
 
   return (
-    <LinearGradient 
+    <ImageBackground
       style={styles.container}
-      colors={[secondary80, secondary100]}
+      source={BannerAthenas}
     >
       <BorderlessButton onPress={handleGoBack}>
-        <Feather 
+        <Feather
           name="arrow-left"
           size={24}
           color={heading}
@@ -36,18 +37,18 @@ export function Header({ title, action}: Props ){
       </BorderlessButton>
 
       <Text style={styles.title}>
-        { title }
+        {title}
       </Text>
 
       {
-        action 
-        ? 
-        <View>
-          { action }
-        </View>
-        :
-        <View style={{ width: 24 }}/>
+        action
+          ?
+          <View>
+            {action}
+          </View>
+          :
+          <View style={{ width: 24 }} />
       }
-    </LinearGradient>
+    </ImageBackground>
   );
 }

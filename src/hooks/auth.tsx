@@ -78,15 +78,20 @@ function AuthProvider({ children }: AuthProviderProps) {
   const loadDataProfile = async (authentication) => {
     const userInfo = await api.get('/oauth2/v3/userinfo');
 
+    console.log(userInfo)
+
     const firstName = userInfo.given_name;
     userInfo.data.avatar = userInfo.picture;
 
     const userData = {
-      ...userInfo,
+      ...userInfo.data,
       firstName,
       token: authentication.accessToken,
       id: authentication.state
     }
+
+    console.log(userData)
+
 
     await AsyncStorage.setItem(COLLECTION_USERS, JSON.stringify(userData));
     setUser(userData);

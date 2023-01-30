@@ -35,9 +35,13 @@ import { Header } from '../../components/Header';
 import { Load } from '../../components/Load';
 import { CategorySelect } from '../../components/CategorySelect';
 import { PlayersHeader } from '../../components/PlayersHeader';
+import { Avatar } from '../../components/Avatar';
+
 
 import { games } from '../../utils/games';
 import JogoCartasImage from '../../assets/jogocartas.png';
+import { Feather } from '@expo/vector-icons';
+import TexturaMadeira from '../../assets/textura_madeira_1.png';
 
 
 type Params = {
@@ -67,7 +71,8 @@ export function Table() {
   }
 
 
-  console.log("user", user)
+  console.log("user", user?.picture)
+
   async function fetchGuildWidget() {
     try {
       // const response = await api.get(`/guilds/${guildSelected.guild.id}/widget.json`);
@@ -131,6 +136,8 @@ export function Table() {
 
   const width = Dimensions.get('window').width;
 
+  console.log('members', widget)
+
   return (
     <Background>
       <Header
@@ -152,61 +159,13 @@ export function Table() {
         }
       />
 
-      <View style={{ marginTop: 12 }}>
+      {/* <View style={{ marginTop: 12 }}>
         <PlayersHeader
           players={widget.members}
         />
-      </View>
+      </View> */}
 
-      <View style={{ marginTop: 12 }}>
 
-        <View style={{ flex: 1 }}>
-          <Carousel
-            loop
-            width={width}
-            height={width / 2}
-            autoPlay={false}
-            data={games}
-            scrollAnimationDuration={1000}
-            onSnapToItem={(index) => console.log('current index:', index)}
-            mode="parallax"
-            modeConfig={{
-              parallaxScrollingScale: 0.9,
-              parallaxScrollingOffset: 50,
-            }}
-            renderItem={({ index }) => {
-              return (
-                <View
-                  style={{
-                    flex: 1,
-                    borderWidth: 1,
-                    justifyContent: 'center',
-                    backgroundColor: 'white',
-                    borderRadius: 25,
-                    overflow: 'hidden'
-                  }}
-                >
-                  <ImageBackground
-                    source={games[index].image}
-                    style={styles.banner}
-                  >
-                    
-                  </ImageBackground>
-                  <View style={styles.bannerContent}>
-                      <Text style={styles.title}>
-                        {games[index].title}
-                      </Text>
-
-                      <Text style={styles.subtitle}>
-                        Descrição do jogo
-                      </Text>
-                    </View>
-                </View>
-              )
-            }}
-          />
-        </View>
-      </View>
 
       {
         loading ? <Load /> :
@@ -225,22 +184,97 @@ export function Table() {
               ItemSeparatorComponent={() => <ListDivider isCentered />}
               style={styles.members}
             /> */}
-            <View style={styles.table} />
+            <View style={styles.room}>
+              <ImageBackground
+                source={TexturaMadeira}
+                style={styles.table}
+                resizeMode={'stretch'}
+              />
+
+              <View style={styles.horizontal}>
+                <View style={styles.user} >
+                  <Image
+                    source={{ uri: user?.picture }}
+                    style={{ width: 58, height: 58 }}
+                    resizeMode="cover"
+                  />
+                </View>
+                <View style={styles.user} />
+                <View style={styles.user} />
+                <View style={styles.user} />
+                <View style={styles.user} />
+                <View style={styles.user} />
+                <View style={styles.user} />
+                <View style={styles.user} />
+              </View>
+              <View style={styles.vertical}>
+                <View style={styles.user} />
+                <View style={styles.user} />
+              </View>
+            </View>
             {/* <View>
               <Text>Neste jogo você terá que tirar</Text>
             </View> */}
+
+            <View style={{ marginTop: 12 }}>
+              <View style={{ flex: 1 }}>
+                <Carousel
+                  loop
+                  width={width}
+                  height={300}
+                  autoPlay={false}
+                  data={games}
+                  scrollAnimationDuration={1000}
+                  onSnapToItem={(index) => console.log('current index:', index)}
+                  mode="parallax"
+                  modeConfig={{
+                    parallaxScrollingScale: 0.9,
+                    parallaxScrollingOffset: 50,
+                  }}
+                  renderItem={({ index }) => {
+                    return (
+                      <View
+                        style={{
+                          flex: 1,
+                          borderWidth: 1,
+                          justifyContent: 'center',
+                          backgroundColor: 'white',
+                          borderRadius: 25,
+                          overflow: 'hidden'
+                        }}
+                      >
+                        <ImageBackground
+                          source={games[index].image}
+                          style={styles.banner}
+                        >
+                          <View style={styles.footer}>
+                            <Button
+                              title="Iniciar partida"
+                              onPress={handleOpenGuild}
+                            />
+                          </View>
+                        </ImageBackground>
+                        <View style={styles.bannerContent}>
+                          <Text style={styles.title}>
+                            {games[index].title}
+                          </Text>
+
+                          <Text style={styles.subtitle}>
+                            Descrição do jogo
+                          </Text>
+                        </View>
+                      </View>
+                    )
+                  }}
+                />
+              </View>
+            </View>
           </>
+
+
       }
 
-      {
-        guildSelected.guild.owner &&
-        <View style={styles.footer}>
-          <Button
-            title="Entrar na partida"
-            onPress={handleOpenGuild}
-          />
-        </View>
-      }
+
     </Background>
   );
 }

@@ -11,7 +11,9 @@ export function Profile() {
   const { user, singOut } = useAuth();
 
   function handleSignOut() {
-    Alert.alert('Logout', 'Deseja sair do GamePlay?',
+    console.log('logout')
+    singOut()
+    /* Alert.alert('Logout', 'Deseja sair do GamePlay?',
       [
         {
           text: 'Não',
@@ -21,14 +23,16 @@ export function Profile() {
           text: 'Sim',
           onPress: () => singOut()
         }
-      ])
+      ]) */
   }
+
+  console.log(user.picture)
 
   return (
     <View style={styles.container}>
 
       <RectButton onPress={handleSignOut}>
-        <Avatar urlImage={user.data.picture} />
+        <Avatar urlImage={user.picture} />
       </RectButton>
 
       <View>
@@ -38,7 +42,7 @@ export function Profile() {
           </Text>
 
           <Text style={styles.username}>
-            {user.data.given_name}
+            {user.given_name}
           </Text>
         </View>
 

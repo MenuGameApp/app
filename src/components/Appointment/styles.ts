@@ -16,9 +16,15 @@ export const styles = StyleSheet.create({
   },
   header: {
     width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 12
+    display: 'grid',
+    gridTemplateColumns: 'auto 20px 20px',
+    margin: 0,
+    padding: 0,
+    height: '100%',
+    /* gap: 24px; */
+    justifyContent: 'normal',
+    paddingRight: 24,
+    gap: 40
   },
   title: {
     fontFamily: theme.fonts.title700,
@@ -63,5 +69,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 20
+  },
+  column: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-evenly'
   }
 });
